@@ -45,12 +45,3 @@ def realizar_eda_completa(df):
     
     return df_limpo
 
-def transform_tfidf(df):
-    print("\n--- 4. TRANSFORM (TF-IDF para Gaps) ---")
-    # Foco apenas em reviews negativos para encontrar Gaps de Produto
-    df_neg = df[df['label'] == '1'].copy()
-    tfidf = TfidfVectorizer(stop_words='english', max_features=10)
-    tfidf.fit(df_neg['review'])
-    top_words = tfidf.get_feature_names_out()
-    print(f"Palavras indicadoras de Gaps: {list(top_words)}")
-    return top_words
