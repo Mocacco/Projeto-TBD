@@ -7,7 +7,7 @@ def transform_com_diagnostico(df):
     print("INICIANDO ETAPA DE TRANSFORM (LIMPEZA E QUALIDADE)")
     print("="*50)
 
-    # 1. Diagnóstico e Limpeza (Exigências do Quadro)
+    # 1. Diagnóstico e Limpeza 
     print(f"1. REGISTROS INICIAIS: {len(df)}")
     
     # Valores Ausentes e Únicos
@@ -19,7 +19,7 @@ def transform_com_diagnostico(df):
     df = df.dropna(subset=['review']).drop_duplicates().copy()
     print(f"2. REGISTROS APÓS LIMPEZA (NaN/Duplicados): {len(df)}")
 
-    # 2. Tradução/Mapeamento (Passo 3º do quadro)
+    # 2. Tradução/Mapeamento 
     mapeamento = {'1': 'Negativo', '2': 'Positivo'}
     df['sentimento'] = df['label'].map(mapeamento)
     
@@ -33,7 +33,7 @@ def transform_com_diagnostico(df):
     df['review_clean'] = df['review'].apply(clean_text)
     df['tamanho'] = df['review_clean'].str.len()
 
-    # 4. Estatística Descritiva (Exigência do quadro)
+    # 4. Estatística Descritiva 
     print("\n4. ESTATÍSTICA DESCRITIVA (Comprimento):")
     print(df['tamanho'].describe())
 
@@ -42,7 +42,7 @@ def transform_com_diagnostico(df):
     tfidf = TfidfVectorizer(stop_words='english', max_features=1000, ngram_range=(1, 2))
     matrix = tfidf.fit_transform(df['review_clean'])
     
-    # Print das Top palavras para os reviews negativos (Gaps)
+    # Print das Top palavras para os reviews negativos 
     df_neg = df[df['label'] == '1']
     if not df_neg.empty:
         tfidf_neg = TfidfVectorizer(stop_words='english', max_features=10)

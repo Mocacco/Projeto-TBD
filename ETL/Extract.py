@@ -54,18 +54,3 @@ def transform_tfidf(df):
     top_words = tfidf.get_feature_names_out()
     print(f"Palavras indicadoras de Gaps: {list(top_words)}")
     return top_words
-
-if __name__ == "__main__":
-    # Passo 1: Extrair
-    dados_brutos = extract_from_compressed()
-    
-    # Passo 2: Limpar e Diagnosticar (Roteiro do Quadro)
-    dados_processados = realizar_eda_completa(dados_brutos)
-    
-    # Passo 3: Transformar (Mineração)
-    transform_tfidf(dados_processados)
-    
-    # Passo 4: Load (Carga Final)
-    dados_processados.to_parquet('amazon_reviews.parquet')
-    dados_processados.to_csv('amazon_reviews.csv', index=False)
-    print("\nProcesso concluído: Diagnóstico realizado e arquivos salvos.")

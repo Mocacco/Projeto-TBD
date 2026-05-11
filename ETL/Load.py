@@ -10,15 +10,15 @@ def executar_load(df):
     print("="*50)
 
     try:
-        # 1. Salvando em Parquet (Otimizado para o pipeline)
+        # 1. Salvando em Parquet
         df.to_parquet('amazon_reviews.parquet', index=False)
         print("1. [SUCESSO] Arquivo 'amazon_reviews.parquet' gerado.")
 
-        # 2. Salvando em CSV (Para visualização rápida)
+        # 2. Salvando em CSV
         df.to_csv('amazon_reviews.csv', index=False, encoding='utf-8')
         print("2. [SUCESSO] Arquivo 'amazon_reviews.csv' gerado.")
 
-        # 3. Salvando Versão Transformada (Se aplicável)
+        # 3. Salvando Versão Transformada
         df.to_parquet('dados_transformados.parquet', index=False)
         print("3. [SUCESSO] Arquivo 'dados_transformados.parquet' gerado.")
 
